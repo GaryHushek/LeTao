@@ -1,0 +1,111 @@
+// 公共样式
+// 定义全局主题颜色
+@themeColor: #006699;
+
+// 初始化样式
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a {
+  color: #fff;
+}
+body {
+  background-color: #fff;
+}
+img {
+  border: none;
+  width: 100%;
+  // 去除图片底部三像素
+  vertical-align: middle;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+// 头部模块样式
+#header {
+  height: 50px;
+  background-color: @themeColor;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  line-height: 50px;
+  padding: 0 15px;
+  h1.logo {
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+  }
+  .search {
+    position: absolute;
+    right: 0px;
+    padding: 0 10px;
+    top: 0;
+    color: #fff;
+    .fa-search {
+      font-size: 18px;
+    }
+  }
+}
+
+// 主体滑动区域
+#main {
+  padding: 50px 0;
+  width: 100%;
+  height: 100%;
+}
+
+// 底部模块样式
+#footer {
+  width: 100%;
+  height: 50px;
+  background-color: @themeColor;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    li {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding-top: 8px;
+        flex-direction: column;
+        .fa {
+          display: block;
+          font-size: 20px;
+        }
+        &.active {
+          color: orange;
+        }
+      }
+    }
+  }
+}
