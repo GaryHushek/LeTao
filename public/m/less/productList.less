@@ -1,0 +1,87 @@
+@import "./base.less";
+
+#header {
+  h2 {
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+}
+// 主体部分的样式
+#main {
+  .search {
+    padding: 10px;
+    position: relative;
+    padding-right: 64px;
+    .input-search {
+      font-size: 12px;
+      height: 33px;
+      margin-bottom: 0px;
+      border-color: @themeColor;
+      border-radius: 3px 0 0 3px;
+    }
+    .btn-search {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background-color: @themeColor;
+      border-color: @themeColor;
+      border-radius: 0px 3px 3px 0px;
+    }
+  }
+  .productList {
+    position: relative;
+    height: 100%;
+    .container {
+      padding-bottom: 50px;
+      .control-Panel {
+        background-color: #eee;
+        display: flex;
+        color: #333;
+        font-size: 12px;
+        li {
+          flex: 1;
+          text-align: center;
+          line-height: 30px;
+        }
+      }
+      #list {
+        padding: 15px 10px 10px 10px;
+
+        a {
+          display: block;
+        }
+        .products {
+          &:nth-child(n) {
+            padding: 0 5px 10px 0;
+          }
+          &:nth-child(2n) {
+            padding: 0 0px 10px 5px;
+          }
+          .mui-col-xs-12 {
+            padding-top: 5px;
+          }
+          .content {
+            width: 100%;
+            box-shadow: 0 0 5px #ccc;
+            text-align: center;
+            padding-bottom: 10px;
+            .mui-btn {
+              background-color: @themeColor;
+            }
+            .price {
+              color: red;
+              font-size: 4px;
+            }
+            .old-price {
+              font-size: 12px;
+              text-decoration: line-through;
+            }
+          }
+        }
+      }
+    }
+  }
+}

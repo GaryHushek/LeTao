@@ -13,37 +13,32 @@
     <!-- 引入FontAwesome css包 -->
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.min.css">
     <!-- 引入自己写的样式文件（less文件） -->
-    <link rel="stylesheet/less" href="./less/category.less">
+    <link rel="stylesheet/less" href="./less/search.less">
     <!-- 引入less编译器文件less.js -->
     <script src="./lib/less/less.js"></script>
+
 </head>
 
 <body>
     <!-- 头部模块的开始 -->
     <header id="header">
-        <a href="javascript:void(0)" class="arrow-left">
+        <a href="./category.html" class="arrow-left">
             <i class="fa fa-arrow-left" aria- hidden="true"></i>
         </a>
-        <form>
-            <input type="text" class="" placeholder="请输入搜索内容...">
-        </form>
-        <a href="./search.html" class="search">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
+        <h2 class="">搜索中心</h2>
     </header>
     <!-- 头部模块的结束 -->
     <!-- 主体部分的开始 -->
-    <main id="main">
-        <div class="left">
-            <ul class="topCategory">
-            </ul>
-        </div>
-        <div class="right">
-            <div class="mui-scroll-wrapper">
-                <div class="mui-scroll">
-                    <!--这里放置真实显示的DOM内容-->
-                    <ul class="secondCategory">
-                    </ul>
+    <main id="main" class="">
+        <form action="" class="search">
+            <input type="text" class="input-search" placeholder="请输入想要的内容">
+            <a href="#" class="mui-btn mui-btn-primary btn-search">搜索</a>
+        </form>
+        <div class="search-history">
+            <div class="title">
+                <span>搜索历史</span>
+                <span class="fa fa-trash mui-pull-right search-delete-all">清空记录</span>
+                <div class="container">
                 </div>
             </div>
         </div>
@@ -97,25 +92,20 @@
     <!-- 引入art-template.js -->
     <script src="./lib/artTemplate/template.js"></script>
     <!-- 引入自己的js -->
-    <script src="./js/category.js"></script>
-    <!-- categoryTop模板 -->
-    <script id="categoryTopTem" type="text/html">
-        {{each rows as top index}}
-        <li class="{{index==0?'active':''}}" data-id="{{top.id}}">{{top.categoryName}}</li>
-        {{/each}}
+    <script src="./js/search.js"></script>
+    <!-- 搜索历史内容列表模板 -->
+    <script id="searchHistoryTem" type="text/html">
+        <ul class="history-lists">
+            {{each }}
+            <li>
+                <a href="./productList.html">{{$value.searchText}}</a>
+                <span href="" class="search-delete mui-pull-right" data-search-id='{{$index}}'>
+                    <i class="fa fa-times " aria-hidden="true"></i>
+                </span>
+            </li>
+            {{/each}}
+        </ul>
     </script>
-    <!-- secondCategory模板 -->
-    <script id="secondCategoryTem" type="text/html">
-        {{each rows as sec index}}
-        <li>
-            <a href="">
-                <img src="{{sec.brandLogo}}" alt="">
-                <p class="title">{{sec.brandName}}</p>
-            </a>
-        </li>
-        {{/each}}
-    </script>
-
 </body>
 
 </html>

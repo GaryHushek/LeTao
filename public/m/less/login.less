@@ -1,0 +1,43 @@
+@import "./productList.less";
+@import "./base.less";
+
+#main {
+  form {
+    padding: 10px;
+    button {
+      width: 100%;
+      background-color: @themeColor;
+      color: #fff;
+    }
+    .auth-code {
+      display: flex;
+      padding-bottom: 20px;
+      input {
+        flex: 2;
+      }
+      button {
+        margin-left: 20px;
+        flex: 1;
+        height: 40px;
+      }
+    }
+  }
+  .protocol {
+    margin-top: 20px;
+    height: 20px;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 20px;
+    input {
+      vertical-align: middle;
+    }
+    a {
+      color: @themeColor;
+    }
+  }
+  .register {
+    color: #007aff;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+}
