@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>乐淘letao.com</title>
+    <!-- 引入站点图标 rel="icon" 表示引入文件是图标-->
+    <link rel="icon" href="./images/favicon.ico">
+    <!-- 引入MUI的css包 -->
+    <link rel="stylesheet" href="./lib/mui/css/mui.min.css">
+    <!-- 引入FontAwesome css包 -->
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.min.css">
+    <!-- 引入自己写的样式文件（less文件） -->
+    <link rel="stylesheet/less" href="./less/product.less">
+    <!-- 引入less编译器文件less.js -->
+    <script src="./lib/less/less.js"></script>
+
+</head>
+
+<body>
+    <!-- 头部模块的开始 -->
+    <header id="header">
+        <a href="./productList.html" class="arrow-left">
+            <i class="fa fa-arrow-left" aria- hidden="true"></i>
+        </a>
+        <h2 class="">产品详情</h2>
+        <a href="./index.html" class="fa fa-home fa-home mui-pull-right">
+        </a>
+    </header>
+    <!-- 头部模块的结束 -->
+    <!-- 主体部分的开始 -->
+    <main id="main">
+        <div class="product">
+            <!--下拉刷新容器-->
+            <div id="refreshContainer" class="mui-content mui-scroll-wrapper container">
+                <div class="mui-scroll">
+                    <!--数据列表-->
+                    <div class="mui-table-view mui-table-view-chevron">
+                        <!-- 轮播图模块的开始 -->
+                        <section id="silder">
+                            <div class="mui-slider">
+
+                                <!-- 自动轮播需要增加最后一张图片在第一张前面 
+                                 增加第一张在最后一张后面
+                            -->
+
+
+                            </div>
+                        </section>
+                        <!-- 轮播图模块的结束 -->
+                        <div class="saleInfo">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 主体模块的结束 -->
+    <!-- 底部模块的开始 -->
+    <footer id="footer">
+        <div class="left">
+            <a href="" class="buyCat">
+                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="right">
+            <button type="button" class="mui-btn mui-btn-danger buyCar">加入购物车</button>
+            <button type="button" class="mui-btn mui-btn-warning buy">立即购买</button>
+        </div>
+    </footer>
+    <!-- 底部模块的结束 -->
+
+
+    <!-- 引入MUI.js -->
+    <script src="./lib/mui/js/mui.min.js"></script>
+    <!-- 引入zepto.js -->
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <script src="./lib/zepto/touch.js"></script>
+    <!-- 引入art-template.js -->
+    <script src="./lib/artTemplate/template.js"></script>
+    <!-- 引入自己的js -->
+    <script src="./js/product.js"></script>
+    <!-- 产品售卖信息模板 -->
+    <script id="saleInfoTemp" type="text/html">
+        <div class="title">
+            <p>{{proName}}</p>
+        </div>
+        <div class="price-info">
+            价格：
+            <span class="price">￥499.1</span>
+            <span class="oldPrice">￥888.1</span>
+        </div>
+        <div class="size">
+            尺码: {{each size as size i}}
+            <span>{{size}}</span>
+            {{/each}}
+        </div>
+        <div class="num">
+            数量：
+            <div class="mui-numbox" data-numbox-min='0' data-numbox-max='{{num}}'>
+                <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                <input class="mui-numbox-input" type="number" value='1' />
+                <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+            </div>
+            剩余：
+            <span class="surplus">{{num}}</span>件
+        </div>
+    </script>
+    <!-- 产品图片轮播模板 -->
+    <script id="silderTemp" type="text/html">
+        <div class="mui-slider-group mui-slider-loop">
+            {{each pic as value i}} {{if i == 0}}
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="{{pic[pic.length-1].picAddr}}" />
+                </a>
+            </div>
+            {{/if}}
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="{{value.picAddr}}" />
+                </a>
+            </div>
+            {{if i == pic.length-1}}
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="{{pic[0].picAddr}}" />
+                </a>
+            </div>
+            {{/if}} {{/each}}
+        </div>
+        <!-- banner下面的小圆点 -->
+        <div class="mui-slider-indicator">
+            {{each pic as value i}}
+            <!-- 有几个小圆点就写几个mui-indicator -->
+            <div class="mui-indicator {{i==0?'mui-active':''}}"></div>
+            {{/each}}
+        </div>
+    </script>
+</body>
+
+</html>

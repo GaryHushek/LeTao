@@ -13,7 +13,7 @@
     <!-- 引入FontAwesome css包 -->
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.min.css">
     <!-- 引入自己写的样式文件（less文件） -->
-    <link rel="stylesheet/less" href="./less/search.less">
+    <link rel="stylesheet/less" href="./less/address.less">
     <!-- 引入less编译器文件less.js -->
     <script src="./lib/less/less.js"></script>
 
@@ -22,28 +22,29 @@
 <body>
     <!-- 头部模块的开始 -->
     <header id="header">
-        <a href="./category.html" class="arrow-left">
+        <a href="./profile.html" class="arrow-left">
             <i class="fa fa-arrow-left" aria- hidden="true"></i>
         </a>
-        <h2 class="">搜索中心</h2>
+        <h2 class="">收货地址管理</h2>
     </header>
     <!-- 头部模块的结束 -->
     <!-- 主体部分的开始 -->
     <main id="main" class="">
-        <form action="" class="search">
-            <input type="text" class="input-search" placeholder="请输入想要的内容">
-            <a href="#" class="mui-btn mui-btn-primary btn-search">搜索</a>
-        </form>
-        <div class="search-history">
-            <div class="title">
-                <span>搜索历史</span>
-                <span class="fa fa-trash mui-pull-right search-delete-all">清空记录</span>
-                <div class="container">
+        <div class="addAddress">
+            <a type="button" href="./addressManage.html" class="mui-btn">添加收货地址</a>
+        </div>
+        <div class="content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view addressManage">
+
+                    </ul>
                 </div>
             </div>
         </div>
+
     </main>
-    <!-- 主体部分的结束 -->
+    <!-- 主体模块的结束 -->
     <!-- 底部模块的开始 -->
     <footer id="footer">
         <ul class="content">
@@ -92,20 +93,24 @@
     <!-- 引入art-template.js -->
     <script src="./lib/artTemplate/template.js"></script>
     <!-- 引入自己的js -->
-    <script src="./js/search.js"></script>
-    <!-- 搜索历史内容列表模板 -->
-    <script id="searchHistoryTem" type="text/html">
-        <ul class="history-lists">
-            {{each }}
-            <li>
-                <a href="./productList.html?search={{$value.searchText}}">{{$value.searchText}}</a>
-                <span href="" class="search-delete mui-pull-right" data-search-id='{{$value.id}}'>
-                    <i class="fa fa-times " aria-hidden="true"></i>
-                </span>
-            </li>
-            {{/each}}
-        </ul>
+    <script src="./js/address.js"></script>
+    <script src="./js/base.js"></script>
+    <!-- 用户收货地址模板 -->
+    <script id="userAddressTemp" type="text/html">
+        {{each}}
+        <li class="mui-table-view-cell  mui-media mui-transitioning">
+            <a class="mui-navigate-right" href="./addressManage.html">
+                <div class="mui-media-body">
+                    邮编:
+                    <span>{{$value.postCode}}</span>&nbsp;&nbsp;收货人:
+                    <span>{{$value.recipients}}</span>
+                    <p class='mui-ellipsis'>{{$value.address+$value.addressDetail}}</p>
+                </div>
+            </a>
+        </li>
+        {{/each}}
     </script>
+
 </body>
 
 </html>

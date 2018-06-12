@@ -13,7 +13,7 @@
     <!-- 引入FontAwesome css包 -->
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.min.css">
     <!-- 引入自己写的样式文件（less文件） -->
-    <link rel="stylesheet/less" href="./less/search.less">
+    <link rel="stylesheet/less" href="./less/profile.less">
     <!-- 引入less编译器文件less.js -->
     <script src="./lib/less/less.js"></script>
 
@@ -22,28 +22,41 @@
 <body>
     <!-- 头部模块的开始 -->
     <header id="header">
-        <a href="./category.html" class="arrow-left">
+        <a href="./index.html" class="arrow-left">
             <i class="fa fa-arrow-left" aria- hidden="true"></i>
         </a>
-        <h2 class="">搜索中心</h2>
+        <h2 class="">个人中心</h2>
     </header>
     <!-- 头部模块的结束 -->
     <!-- 主体部分的开始 -->
     <main id="main" class="">
-        <form action="" class="search">
-            <input type="text" class="input-search" placeholder="请输入想要的内容">
-            <a href="#" class="mui-btn mui-btn-primary btn-search">搜索</a>
-        </form>
-        <div class="search-history">
-            <div class="title">
-                <span>搜索历史</span>
-                <span class="fa fa-trash mui-pull-right search-delete-all">清空记录</span>
-                <div class="container">
-                </div>
-            </div>
+        <ul class="mui-table-view  mui-table-view-chevron">
+            <li class="mui-table-view-cell mui-media">
+                <a class="mui-navigate-right" href="#">
+                    <img class="mui-media-object mui-pull-left" src="./images/user.jpg">
+                    <div class="mui-media-body">
+                        <span class="userName">加载中...</span>
+                        <p class='mui-ellipsis'>绑定手机:
+                            <span class="phone">加载中...</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" href="./password.html">账号与安全</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" href="#">我的购物车</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" href="./address.html">收货地址管理</a>
+            </li>
+        </ul>
+        <div class="logout">
+            <button type="button" class="mui-btn">退出登录</button>
         </div>
     </main>
-    <!-- 主体部分的结束 -->
+    <!-- 主体模块的结束 -->
     <!-- 底部模块的开始 -->
     <footer id="footer">
         <ul class="content">
@@ -72,7 +85,7 @@
                 </a>
             </li>
             <li>
-                <a href="./profile.html">
+                <a href="">
                     <div>
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="user"> 个人中心</span>
@@ -92,20 +105,8 @@
     <!-- 引入art-template.js -->
     <script src="./lib/artTemplate/template.js"></script>
     <!-- 引入自己的js -->
-    <script src="./js/search.js"></script>
-    <!-- 搜索历史内容列表模板 -->
-    <script id="searchHistoryTem" type="text/html">
-        <ul class="history-lists">
-            {{each }}
-            <li>
-                <a href="./productList.html?search={{$value.searchText}}">{{$value.searchText}}</a>
-                <span href="" class="search-delete mui-pull-right" data-search-id='{{$value.id}}'>
-                    <i class="fa fa-times " aria-hidden="true"></i>
-                </span>
-            </li>
-            {{/each}}
-        </ul>
-    </script>
+    <script src="./js/profile.js"></script>
+
 </body>
 
 </html>

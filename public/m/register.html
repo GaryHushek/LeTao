@@ -13,7 +13,7 @@
     <!-- 引入FontAwesome css包 -->
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.min.css">
     <!-- 引入自己写的样式文件（less文件） -->
-    <link rel="stylesheet/less" href="./less/login.less">
+    <link rel="stylesheet/less" href="./less/register.less">
     <!-- 引入less编译器文件less.js -->
     <script src="./lib/less/less.js"></script>
 
@@ -32,26 +32,27 @@
     <main id="main" class="">
         <form action="">
             <div class="mui-input-row">
+                <input type="text" class="mui-input-clear" name="userName" placeholder="用户名">
+            </div>
+            <div class="mui-input-row">
                 <input type="text" class="mui-input-clear" name="phone-number" placeholder="手机号">
             </div>
-
             <div class="mui-input-row">
                 <input type="password" class="mui-input-clear mui-input-password" name="password" placeholder="密码">
             </div>
             <div class="mui-input-row">
-                <input type="password" class="mui-input-clear mui-input-password" placeholder="确认密码">
+                <input type="password" class="mui-input-clear mui-input-password" name="agin-pwd" placeholder="确认密码">
             </div>
             <div class="auth-code">
                 <div class="mui-input-row">
-                    <input type="text" class="mui-input-clear" name="user-name" placeholder="验证码" name="auth code">
+                    <input type="text" class="mui-input-clear" placeholder="验证码" name="auth-code">
                 </div>
                 <button type="button" class="mui-btn mui-btn-primary vcode">获取验证码</button>
             </div>
-            <button type="button" class="mui-btn mui-btn-primary mui-btn-outlined">注 册</button>
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-outlined btn-register">注 册</button>
         </form>
         <div class="protocol">
-            <input name="checkbox1" value="Item 1" type="checkbox" checked>
-            我同意《会员服务协议》
+            <input name="checkbox1" value="Item 1" type="checkbox" checked> 我同意《会员服务协议》
             <a href="./login.html" class="mui-pull-right">立即登录</a>
         </div>
     </main>
@@ -84,7 +85,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="./profile.html">
                     <div>
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="user"> 个人中心</span>
