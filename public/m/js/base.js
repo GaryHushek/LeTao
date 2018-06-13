@@ -13,7 +13,7 @@ Base.prototype = {
         $.ajax({
             url: "http://127.0.0.1:3000/user/queryUserMessage",
             success: function (backData) {
-                console.log(backData);
+                // console.log(backData);
                 if (backData.error) {
                     // 打回登陆页面
                     window.location.href = "./login.html";
@@ -24,4 +24,10 @@ Base.prototype = {
             }
         });
     },
+    // 底部每个模块点击背景色改变
+    changeBgc:function(){
+        $("#footer a").tap(function(){
+            // console.log("1");
+        })
+    }
 }

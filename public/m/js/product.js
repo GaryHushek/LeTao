@@ -76,7 +76,7 @@ LeTao.prototype = {
                 mui(".mui-numbox").numbox();
                 // 渲染轮播图
                 var html = template("silderTemp", backData);
-                console.log(html);
+                // console.log(html);
                 $(".mui-slider").html(html);
                 // 初始化轮播图
                 letao.initSilder();
@@ -108,17 +108,33 @@ LeTao.prototype = {
                     type: 'div'
                 })
                 return;
+            } else {
+                var data = {
+                        productId: $(".title").data("product-id") - 0,
+                        num: $("input.product-number").val() - 0,
+                        size: $(".size").children(".active").html() - 0,
+                    };
+                    console.log(data);
+                    // 把数据加如购物车
+                    $.ajax({
+                        url: "/cart/addCart",
+                        data: data,
+                        type: "post",
+                        success: function (backData) {
+                            console.log(backData)
+                            // 尺码数量都选择了，弹出确认框，确认是否加入购物车
+                            mui.confirm('是否去购物车看看?', '添加成功', ['是', '否'], function (e) {
+                                if (!e.index) {
+                                    // 点击的是 '是'
+                                    window.location.href = "./car.html";
+                                } else {
+                                    // 点击的是 '否'
+                                    return;
+                                }
+                            }, 'div');
+                        }
+                    })
             }
-            // 尺码数量都选择了，弹出确认框，确认是否加入购物车
-            mui.confirm('是否去购物车看看?', '添加成功', ['是', '否'], function (e) {
-                if (!e.index) {
-                    // 点击的是 '是'
-                    console.log("正在进入购物车");
-                } else {
-                    // 点击的是 '否'
-                    console.log("请继续选择！");
-                }
-            }, 'div');
         })
     }
 }

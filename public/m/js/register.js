@@ -1,14 +1,18 @@
+var letao
 $(function () {
-    var letao = new LeTao();
+    letao = new LeTao();
     letao.getVCode();
     // 初始化注册信息验证
     letao.initRegisterInfo();
 })
 
 var LeTao = function () {
+    // 保存一些当前页面需要的页面全局变量
     this.VCode = "";
     this.VCodeBtnBgc = "";
     this.VCodeBtnBdc = "";
+    // 获取验证码的时间
+    this.registerSec = 60;
 };
 LeTao.prototype = {
     // 验证的获取
@@ -29,12 +33,12 @@ LeTao.prototype = {
                     success: function (backData) {
                         console.log(backData.vCode);
                         LeTao.VCode = backData.vCode;
-                        var timeId, sec = 60;
+                        var timeId;
                         setTimeout(function () {
                             timeId = setInterval(function () {
-                                if (sec > 0) {
-                                    $(".vcode").html(sec + "S后再获取")
-                                    sec--;
+                                if (letao.registerSec > 0) {
+                                    $(".vcode").html(letao.registerSec + "S后再获取")
+                                    letao.registerSec--;
                                 } else {
                                     // 按钮样式还原
                                     $('.vcode').css({
@@ -42,6 +46,7 @@ LeTao.prototype = {
                                         borderColor: bdc
                                     }).html("获取验证码");
                                     clearInterval(timeId);
+                                    letao.registerSec = 60;
                                 }
                             }, 1000);
                         });
@@ -92,30 +97,29 @@ LeTao.prototype = {
                     type: 'div'
                 })
                 return;
-                // } else if (!phoneReg.test(phone)) {
-                //     // mui的消息弹出框
-                //     mui.toast('请输入合法的手机号', {
-                //         duration: 'short',
-                //         type: 'div'
-                //     })
-                //     return;
-                // } else if (pwd != pwd1) {
-                //     // mui的消息弹出框
-                //     mui.toast('两次密码输入不匹配', {
-                //         duration: 'short',
-                //         type: 'div'
-                //     })
-                //     return;
-                // } else if (vcode != LeTao.VCode) {
-                //     // mui的消息弹出框
-                //     mui.toast('请输入正确的验证码', {
-                //         duration: 'short',
-                //         type: 'div'
-                //     })
-                //     return;
+            } else if (!phoneReg.test(phone)) {
+                // mui的消息弹出框
+                mui.toast('请输入合法的手机号', {
+                    duration: 'short',
+                    type: 'div'
+                })
+                return;
+            } else if (pwd != pwd1) {
+                // mui的消息弹出框
+                mui.toast('两次密码输入不匹配', {
+                    duration: 'short',
+                    type: 'div'
+                })
+                return;
+            } else if (vcode != LeTao.VCode) {
+                // mui的消息弹出框
+                mui.toast('请输入正确的验证码', {
+                    duration: 'short',
+                    type: 'div'
+                })
+                return;
             }
             // 用户注册
-            console.log("1111");
             $.ajax({
                 url: "http://127.0.0.1:3000/user/register",
                 data: {

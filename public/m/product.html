@@ -62,7 +62,7 @@
     <!-- 底部模块的开始 -->
     <footer id="footer">
         <div class="left">
-            <a href="" class="buyCat">
+            <a href="./car.html" class="buyCat">
                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
             </a>
         </div>
@@ -85,7 +85,7 @@
     <script src="./js/product.js"></script>
     <!-- 产品售卖信息模板 -->
     <script id="saleInfoTemp" type="text/html">
-        <div class="title">
+        <div class="title" data-product-id="{{id}}">
             <p>{{proName}}</p>
         </div>
         <div class="price-info">
@@ -100,9 +100,9 @@
         </div>
         <div class="num">
             数量：
-            <div class="mui-numbox" data-numbox-min='0' data-numbox-max='{{num}}'>
+            <div class="mui-numbox" data-numbox-min='0' data-numbox-step='1'  data-numbox-max='{{num}}'>
                 <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-                <input class="mui-numbox-input" type="number" value='1' />
+                <input class="mui-numbox-input product-number" type="number" value='1' />
                 <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
             </div>
             剩余：
@@ -140,6 +140,7 @@
             {{/each}}
         </div>
     </script>
+ 
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 var letao;
-$(function () {
+$(function() {
   letao = new LeTao();
   // 初始化下拉刷新
   letao.initPullRefresh();
@@ -10,12 +10,13 @@ $(function () {
   // 初始化保存搜索记录
   letao.saveSearchHistory();
   // 调用一次
-  letao.getSearchData({
+  letao.getSearchData(
+    {
       proName: search,
       pageSize: 2,
       page: page
     },
-    function (data) {
+    function(data) {
       console.log(data);
       var html = template("productLisTemp", data);
       $("#list .mui-row").html(html);
@@ -28,14 +29,14 @@ $(function () {
 });
 
 // 初始化LeTao构造函数
-var LeTao = function () {};
+var LeTao = function() {};
 var search;
 var page = 1;
 // 所有productList的功能挂载在LeTao构造函数的原型上
 LeTao.prototype = {
   // 搜索过的内容的本地保存
-  saveSearchHistory: function () {
-    $(".btn-search").on("tap", function () {
+  saveSearchHistory: function() {
+    $(".btn-search").on("tap", function() {
       // 获取到搜索的内容
       searchText = $(".input-search")
         .val()
@@ -95,7 +96,7 @@ LeTao.prototype = {
     });
   },
   // 初始化下拉刷新
-  initPullRefresh: function () {
+  initPullRefresh: function() {
     mui.init({
       pullRefresh: {
         container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -105,13 +106,14 @@ LeTao.prototype = {
           contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
           // contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
           contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-          callback: function () {
+          callback: function() {
             // 停止刷新
             setTimeout(() => {
-              letao.getSearchData({
+              letao.getSearchData(
+                {
                   proName: search
                 },
-                function (data) {
+                function(data) {
                   console.log(data);
                   var html = template("productLisTemp", data);
                   $("#list .mui-row").html(html);
@@ -133,14 +135,15 @@ LeTao.prototype = {
           auto: false, //可选,默认false.自动上拉加载一次
           contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
           contentnomore: "没有更多数据了", //可选，请求完毕若没有更多数据时显示的提醒内容；
-          callback: function () {
+          callback: function() {
             // 停止刷新
             setTimeout(() => {
-              letao.getSearchData({
+              letao.getSearchData(
+                {
                   proName: search,
                   page: ++page
                 },
-                function (data) {
+                function(data) {
                   if (data.data.length > 0) {
                     console.log(data);
                     var html = template("productLisTemp", data);
@@ -162,7 +165,7 @@ LeTao.prototype = {
     });
   },
   // 初始化点击搜索商品
-  searchProduct: function () {
+  searchProduct: function() {
     $(".btn-search").on("tap", () => {
       // 拿到用户搜索的内容
       var searchText = $("input.input-search")
@@ -173,12 +176,13 @@ LeTao.prototype = {
       } else {
         console.log(searchText);
         search = searchText;
-        letao.getSearchData({
+        letao.getSearchData(
+          {
             proName: search,
             pageSize: 2,
             page: page
           },
-          function (data) {
+          function(data) {
             console.log(data);
             var html = template("productLisTemp", data);
             $("#list .mui-row").html(html);
@@ -188,7 +192,7 @@ LeTao.prototype = {
     });
   },
   // 加载商品
-  getSearchData: function (obj, callback) {
+  getSearchData: function(obj, callback) {
     $.ajax({
       url: "http://127.0.0.1:3000/product/queryProduct",
       data: {
@@ -199,7 +203,7 @@ LeTao.prototype = {
         mun: obj.num || 1
       },
       type: "get",
-      success: function (backData) {
+      success: function(backData) {
         if (callback) {
           callback(backData);
         }
@@ -207,8 +211,8 @@ LeTao.prototype = {
     });
   },
   // 商品排序
-  sortProducts: function () {
-    $(".control-Panel").on("tap", "a", function () {
+  sortProducts: function() {
+    $(".control-Panel").on("tap", "a", function() {
       var sortText = $(this).data("sort-type");
       // 获取到排序标志位
       var sortFlag = $(this).data("sort-flag");
@@ -220,21 +224,23 @@ LeTao.prototype = {
       // 修改完后把属性值设置到元素身上
       $(this).attr("data-sort-flag", sortFlag);
       if (sortText == "num") {
-        letao.getSearchData({
+        letao.getSearchData(
+          {
             proName: search,
             num: sortFlag
           },
-          function (data) {
+          function(data) {
             var html = template("productLisTemp", data);
             $("#list .mui-row").html(html);
           }
         );
       } else if (sortText == "price") {
-        letao.getSearchData({
+        letao.getSearchData(
+          {
             proName: search,
             price: sortFlag
           },
-          function (data) {
+          function(data) {
             var html = template("productLisTemp", data);
             $("#list .mui-row").html(html);
           }
@@ -243,11 +249,11 @@ LeTao.prototype = {
     });
   },
   // 产品详情页的跳转
-  skipProductPage: function () {
-    $(".mui-row").on("tap", "button.buy", function (e) {
+  skipProductPage: function() {
+    $(".mui-row").on("tap", "button.buy", function(e) {
       // 带着ID跳转到商品详情页
       window.location.href = "./product.html?id=" + $(this).data("product-id");
-    })
+    });
   }
 };
 

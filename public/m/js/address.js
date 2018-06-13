@@ -5,6 +5,8 @@ $(function () {
     letao.queryUserAllAddress();
     // 初始化左滑
     letao.initLeftSilder();
+    // 初始化点击进入编辑页面
+    letao.setEditAddress();
 })
 
 var LeTao = function () {};
@@ -37,7 +39,18 @@ LeTao.prototype = {
         mui('.mui-scroll-wrapper').scroll({
             deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
         });
+    },
+    // 点击地址，进入地址编辑页面，把点击的地址存入sessionStorage
+    setEditAddress: function () {
+        $(".mui-table-view").on("tap", "li a", function (e) {
+            // 获取到收货人，电话，地址
+            var addr = {
+                user: $(this).find(".user").html(),
+                post: $(this).find(".post").html(),
+                address: $(this).find(".address").html(),
+                city: $(this).find(".city").html()
+            };
+            window.sessionStorage.setItem("editAddress", JSON.stringify(addr));
+        })
     }
-
-
 }
